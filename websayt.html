@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Retro-bit 8-bit Retro Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="script.js" defer></script>
+</head>
+<body id="background">
+    <header class="site-header">
+        <div class="logo" aria-label="Retro-bit logo">
+            <h1>Retro<span><img src="ball.jpg" alt="O" class="logo-ball"></span>-bit</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home" aria-label="Go to Home">Home</a></li>
+                <li><a href="#games" aria-label="View Games">Games</a></li>
+                <li><a href="#about" aria-label="Learn About Us">About</a></li>
+            </ul>
+        </nav>
+        <div class="background-buttons">
+            <button id="morning-btn" aria-label="Set Morning Background">
+                <img src="day.jpg" alt="Morning Icon">
+            </button>
+            <button id="afternoon-btn" aria-label="Set Afternoon Background">
+                <img src="afternoon.jpg" alt="Afternoon Icon">
+            </button>
+            <button id="evening-btn" aria-label="Set Evening Background">
+                <img src="night.jpg" alt="Evening Icon">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Retro-bit!</h2>
+                <p>Explore our classic arcade-style games and relive the nostalgic retro experience!</p>
+                <a href="#games" class="cta-button">Explore Games</a>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <h3>Featured Games</h3>
+            <div class="games-grid">
+                <!-- Pong Game -->
+                <button class="game-card" onclick="window.location.href='pong.html'" aria-label="Play Pong">
+                    <img src="pong.jpg" alt="Pong Preview">
+                    <h4>Pong</h4>
+                    <p>Play the classic Pong game, where you bounce the ball back and forth to score points.</p>
+                </button>
+
+                <!-- Bounce Game -->
+                <button class="game-card" onclick="window.location.href='index.html'" aria-label="Play Bounce">
+                    <img src="bounce.jpg" alt="Bounce Preview">
+                    <h4>Bounce</h4>
+                    <p>Help the ball bounce around obstacles and collect points in this exciting game.</p>
+                </button>
+
+                <!-- Flappy Bird Game -->
+                <button class="game-card" onclick="window.location.href='flappy.html'" aria-label="Play Flappy Bird">
+                    <img src="flappy.jpg" alt="Flappy Bird Preview">
+                    <h4>Flappy Bird</h4>
+                    <p>Guide the bird through the pipes without crashing! Simple but challenging.</p>
+                </button>
+
+                <!-- New Game -->
+                <button class="game-card" onclick="window.location.href='index.html'" aria-label="Play New Game">
+                    <img src="new-game.jpg" alt="New Game Preview">
+                    <h4>New Game</h4>
+                    <p>Experience the latest addition to our retro collection!</p>
+                </button>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h3>About Retro-bit</h3>
+            <p>Retro-bit is your gateway to reliving the golden age of arcade gaming. With a collection of classic games, we bring the nostalgia of 8-bit gaming to life for all generations.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 Retro-bit.</p>
+        <button id="back-to-top" aria-label="Back to Top">↑ Back to Top</button>
+    </footer>
+</body>
+</html>
