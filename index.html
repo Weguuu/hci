@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Retro-Bit - Classic arcade games reimagined for the web">
+    <title>Retro-Bit | Home</title>
+    <style>
+        /* CSS Custom Properties for easy theme switching */
+        :root {
+            --primary-bg: rgba(26, 26, 26, 0.9);
+            --primary-text: #d3d3d3;
+            --accent-color: #ffcc00;
+            --card-bg: #333333;
+            --card-hover-bg: #d3d3d3;
+            --card-hover-text: #1a1a1a;
+            --header-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            --transition-speed: 0.3s;
+        }
+
+        /* Reset and Base Styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 1s ease, color 0.5s ease;
+            background: url('background1.gif') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, p, a {
+            transition: color 0.5s ease;
+        }
+
+        h1, h2, h3, h4, .site-footer {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Focus styles for accessibility */
+        a:focus, button:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Header and Navigation */
+        .site-header {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--header-shadow);
+        }
+
+        .site-header .logo h1 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        /* Navigation Tabs */
+        .main-nav ul {
+            display: flex;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+            height: 60px;
+            align-items: center;
+        }
+
+        .main-nav a {
+            font-size: 18px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all var(--transition-speed);
+            color: var(--primary-text);
+            line-height: 1.5;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            border-color: var(--primary-text);
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        /* Theme Changer Box */
+        .theme-changer-box {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(40,40,40,0.85);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 100;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        .theme-label {
+            font-size: 0.85em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .background-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .background-buttons button {
+            background: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        .background-buttons button:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+        }
+
+        .background-buttons button.active {
+            border-color: var(--accent-color);
+        }
+
+        .background-buttons img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: block;
+        }
+
+        /* Main Sections */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            flex: 1;
+        }
+
+        section {
+            background: var(--primary-bg);
+            color: var(--primary-text);
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Hero Content */
+        .hero-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .large-desc {
+            text-align: justify;
+            line-height: 2.2;
+            font-size: 1.25em;
+            margin-bottom: 2em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.03em;
+            padding: 0 10px;
+        }
+
+        /* Games Section */
+        .games-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--primary-text);
+            text-shadow: var(--text-shadow);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            color: var(--primary-text);
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform var(--transition-speed), background-color var(--transition-speed);
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            font-family: 'Press Start 2P', system-ui, sans-serif;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-card:hover {
+            background-color: var(--card-hover-bg);
+            color: var(--card-hover-text);
+            transform: scale(1.05);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .game-card h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .game-card p {
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.8;
+            padding: 0 5px;
+        }
+
+        /* About Section */
+        .about-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .about-section p {
+            text-align: justify;
+            line-height: 2.2;
+            font-size: 1.25em;
+            max-width: 700px;
+            margin: 0 auto 2em;
+            padding: 0 10px;
+            letter-spacing: 0.03em;
+        }
+
+        /* Leaderboard Table */
+        .leaderboard-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .leaderboard-tables {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .leaderboard-table {
+            margin: 0;
+            text-align: left;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+        }
+
+        .leaderboard-table h4 {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .leaderboard-table table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #222;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .leaderboard-table th {
+            background-color: #333;
+            color: var(--accent-color);
+        }
+
+        .leaderboard-table tr:nth-child(odd) {
+            background-color: #2a2a2a;
+        }
+
+        .leaderboard-table tr:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            text-align: center;
+            padding: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto 0;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .site-footer p {
+            margin-bottom: 15px;
+        }
+
+        #back-to-top {
+            background-color: #333333;
+            color: var(--primary-text);
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Press Start 2P', system-ui, sans-serif;
+            transition: transform var(--transition-speed), background-color var(--transition-speed);
+            margin-top: 10px;
+        }
+
+        #back-to-top:hover {
+            background-color: var(--card-hover-bg);
+            color: var(--card-hover-text);
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s;
+        }
+
+        .loading-screen h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 30px;
+            background-color: #222;
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0%;
+            transition: width 3s;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+            display: none; /* Hidden by default */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .site-header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .theme-changer-box {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 10px auto;
+                z-index: 90;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 10px;
+                height: auto;
+                margin-top: 15px;
+            }
+            
+            .main-nav a {
+                padding: 12px 18px;
+                font-size: 16px;
+            }
+            
+            .hero-content h2 {
+                font-size: 28px;
+            }
+            
+            .large-desc, .about-section p {
+                font-size: 1em;
+                line-height: 2;
+            }
+            
+            .leaderboard-tables {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .leaderboard-table {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-header .logo h1 {
+                font-size: 20px;
+            }
+            
+            .main-nav a {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .theme-changer-box {
+                padding: 8px;
+            }
+            
+            .theme-label {
+                font-size: 0.75em;
+            }
+            
+            .background-buttons img {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .hero-content h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .theme-changer-box, .main-nav, #back-to-top, .loading-screen {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            section, .site-footer {
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+
+            .site-header {
+                position: static;
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="background1.gif" as="image">
+</head>
+<body id="background">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen" role="progressbar" aria-label="Loading progress">
+        <h2>LOADING RETRO-BIT...</h2>
+        <div class="loading-bar">
+            <div id="loading-progress" class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Theme Changer Box -->
+    <div class="theme-changer-box" role="toolbar" aria-label="Theme Selector">
+        <span class="theme-label">Change Background:</span>
+        <div class="background-buttons">
+            <button id="morning-btn" class="active" aria-label="Morning Theme" aria-pressed="true">
+                <img src="day.jpg" alt="Morning Theme">
+            </button>
+            <button id="afternoon-btn" aria-label="Afternoon Theme" aria-pressed="false">
+                <img src="afternoon.jpg" alt="Afternoon Theme">
+            </button>
+            <button id="evening-btn" aria-label="Evening Theme" aria-pressed="false">
+                <img src="night.jpg" alt="Evening Theme">
+            </button>
+        </div>
+    </div>
+
+    <header class="site-header" role="banner">
+        <div class="logo" aria-label="Retro-Bit logo">
+            <h1>Retro-Bit</h1>
+        </div>
+        <nav class="main-nav" role="navigation">
+            <ul>
+                <li><a href="#" data-section="home" class="nav-link active" aria-label="Home" aria-current="page">Home</a></li>
+                <li><a href="#" data-section="games" class="nav-link" aria-label="Games">Games</a></li>
+                <li><a href="#" data-section="about" class="nav-link" aria-label="About">About</a></li>
+                <li><a href="#" data-section="leaderboard" class="nav-link" aria-label="Leaderboard">Leaderboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <!-- Home Section -->
+        <section id="home" role="region" aria-labelledby="home-title">
+            <div class="hero-content">
+                <h2 class="pulse" id="home-title">Welcome to Retro-Bit!</h2>
+                <p class="large-desc">
+                    Experience classic arcade games reimagined for the web. Enjoy, compete, and relive the golden age of gaming.
+                </p>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section id="games" style="display:none;" role="region" aria-labelledby="games-title">
+            <div class="games-section">
+                <h3 id="games-title">Featured Games</h3>
+                <div class="games-grid">
+                    <button class="game-card" onclick="playGame('pong.html')" aria-label="Play Pong">
+                        <img src="pong.jpg" alt="Pong Game Preview">
+                        <h4>Pong</h4>
+                        <p>Bounce the ball and score points. Simple. Timeless.</p>
+                    </button>
+                    <button class="game-card" onclick="openModal('https://itch.io/embed-upload/13675887?color=333333')" aria-label="Play Bounce">
+    <img src="bounce.jpg" alt="Bounce Game Preview">
+    <h4>Bounce</h4>
+    <p>Navigate obstacles and collect points. Fast-paced fun.</p>
+</button>
+
+                    <button class="game-card" onclick="playGame('flappy.html')" aria-label="Play Flappy Bird">
+                        <img src="flappy.jpg" alt="Flappy Bird Game Preview">
+                        <h4>Flappy Bird</h4>
+                        <p>Guide the bird through pipes. Test your reflexes.</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" style="display:none;" role="region" aria-labelledby="about-title">
+            <div class="about-section">
+                <h3 id="about-title">About Retro-Bit</h3>
+                <p>
+                    Retro-Bit is dedicated to reviving the golden age of arcade gaming. Our platform offers a curated selection of classic games, reimagined for the web. Enjoy timeless gameplay, compete on leaderboards, and immerse yourself in nostalgia.
+                </p>
+                <p>
+                    Founded by a team of passionate retro gaming enthusiasts, Retro-Bit aims to preserve the magic of classic arcade games while making them accessible to modern players. We've carefully recreated the look, feel, and challenge of these timeless titles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" style="display:none;" role="region" aria-labelledby="leaderboard-title">
+            <div class="leaderboard-section">
+                <h3 id="leaderboard-title">Leaderboards</h3>
+                <div class="leaderboard-tables">
+                    <div class="leaderboard-table">
+                        <h4>Pong</h4>
+                        <table aria-label="Pong Leaderboard">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rank</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Alice</td>
+                                    <td>1200</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Bob</td>
+                                    <td>1100</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Charlie</td>
+                                    <td>950</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="leaderboard-table">
+                        <h4>Bounce</h4>
+                        <table aria-label="Bounce Leaderboard">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rank</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Carol</td>
+                                    <td>950</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Dave</td>
+                                    <td>900</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Ella</td>
+                                    <td>850</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="leaderboard-table">
+                        <h4>Flappy Bird</h4>
+                        <table aria-label="Flappy Bird Leaderboard">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rank</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Eve</td>
+                                    <td>800</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Frank</td>
+                                    <td>750</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Grace</td>
+                                    <td>700</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <p>© 2025 Retro-Bit. All rights reserved.</p>
+        <button id="back-to-top" aria-label="Back to Top">↑ Back to Top</button>
+    </footer>
+
+    <!-- Modal for Game Display -->
+    <div id="game-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="game-iframe" frameborder="0" src="" allowfullscreen="" width="1024" height="596"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Immediately-invoked Function Expression for encapsulation
+        (function() {
+            'use strict';
+
+            // Cache DOM elements
+            const DOM = {
+                loadingProgress: document.getElementById('loading-progress'),
+                loadingScreen: document.getElementById('loading-screen'),
+                body: document.getElementById('background'),
+                navLinks: document.querySelectorAll('.main-nav a'),
+                sections: document.querySelectorAll('main > section'),
+                backToTopBtn: document.getElementById('back-to-top'),
+                themeButtons: {
+                    morning: document.getElementById('morning-btn'),
+                    afternoon: document.getElementById('afternoon-btn'),
+                    evening: document.getElementById('evening-btn')
+                }
+            };
+
+            // Background/theme configuration
+            const backgrounds = {
+                morning: {
+                    image: 'background1.gif',
+                    textColor: '#ffffff',
+                    buttonColor: '#ffcc00',
+                    cardColor: '#333333',
+                    cardTextColor: '#d3d3d3'
+                },
+                afternoon: {
+                    image: 'background5.gif',
+                    textColor: '#FFF8DC',
+                    buttonColor: '#ff6600',
+                    cardColor: '#333333',
+                    cardTextColor: '#ffffff'
+                },
+                evening: {
+                    image: 'background3.gif',
+                    textColor: '#d3d3d3',
+                    buttonColor: '#003366',
+                    cardColor: '#1a1a1a',
+                    cardTextColor: '#d3d3d3'
+                }
+            };
+
+            // Fun messages for section clicks
+            const sectionMessages = {
+                home: [
+                    'Welcome to Retro-bit!',
+                    'Ready to play some classics?',
+                    'Feeling nostalgic yet?'
+                ],
+                games: [
+                    'Choose a game to play!',
+                    'Which classic will you try first?',
+                    'So many games, so little time!'
+                ],
+                about: [
+                    'Retro-bit: Relive the classic arcade experience!',
+                    'Made with love for retro gaming enthusiasts.',
+                    'Every pixel is crafted with nostalgia in mind.'
+                ]
+            };
+
+            // Helper functions
+            const helpers = {
+                getRandomMessage: function(array) {
+                    return array[Math.floor(Math.random() * array.length)];
+                },
+                
+                showSection: function(id) {
+                    DOM.sections.forEach(section => {
+                        section.style.display = 'none';
+                        section.setAttribute('aria-hidden', 'true');
+                    });
+                    
+                    const targetSection = document.getElementById(id);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        targetSection.setAttribute('aria-hidden', 'false');
+                        
+                        DOM.navLinks.forEach(link => {
+                            const isActive = link.getAttribute('data-section') === id;
+                            link.classList.toggle('active', isActive);
+                            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+                        });
+                        
+                        history.replaceState(null, '', '#' + id);
+                    }
+                },
+                
+                updateBackground: function(theme) {
+                    if (!backgrounds[theme]) return;
+                    
+                    DOM.body.style.backgroundImage = `url('${backgrounds[theme].image}')`;
+                    
+                    Object.keys(DOM.themeButtons).forEach(key => {
+                        const isActive = key === theme;
+                        DOM.themeButtons[key].classList.toggle('active', isActive);
+                        DOM.themeButtons[key].setAttribute('aria-pressed', isActive);
+                    });
+                    
+                    try {
+                        localStorage.setItem('retro-bit-theme', theme);
+                    } catch (e) {
+                        console.warn('Local storage not available:', e);
+                    }
+                },
+                
+                getTimeBasedGreeting: function() {
+                    const hours = new Date().getHours();
+                    if (hours < 12) return 'Good Morning!';
+                    if (hours < 18) return 'Good Afternoon!';
+                    return 'Good Evening!';
+                }
+            };
+
+            // Function to simulate loading progress
+            function simulateLoading() {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    DOM.loadingProgress.style.width = `${progress}%`;
+                    DOM.loadingProgress.setAttribute('aria-valuenow', progress);
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            DOM.loadingScreen.style.opacity = '0';
+                            setTimeout(() => {
+                                DOM.loadingScreen.style.display = 'none';
+                                DOM.loadingScreen.setAttribute('aria-hidden', 'true');
+                            }, 1000);
+                        }, 1000);
+                    }
+                }, 50);
+            }
+
+            // Modal functions
+            function openModal(src) {
+                const modal = document.getElementById('game-modal');
+                const iframe = document.getElementById('game-iframe');
+                iframe.src = src; // Set the iframe source to the game URL
+                modal.style.display = 'block'; // Show the modal
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('game-modal');
+                const iframe = document.getElementById('game-iframe');
+                iframe.src = ''; // Clear the iframe source
+                modal.style.display = 'none'; // Hide the modal
+            }
+
+            // Close the modal when clicking outside of the modal content
+            window.onclick = function(event) {
+                const modal = document.getElementById('game-modal');
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+
+            // Event handlers with debouncing
+            let debounceTimer;
+            
+            function debounce(func, delay = 100) {
+                return function(...args) {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => func.apply(this, args), delay);
+                };
+            }
+
+            function playGame(url) {
+                try {
+                    console.log(`Game selected: ${url}`);
+                } catch (e) {
+                    console.error('Analytics error:', e);
+                }
+                
+                DOM.loadingScreen.style.display = 'flex';
+                DOM.loadingScreen.style.opacity = '1';
+                DOM.loadingScreen.setAttribute('aria-hidden', 'false');
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 300);
+            }
+
+            // Initialize application
+            function initApp() {
+                DOM.loadingProgress.setAttribute('aria-valuemin', '0');
+                DOM.loadingProgress.setAttribute('aria-valuemax', '100');
+                DOM.loadingProgress.setAttribute('aria-valuenow', '0');
+                simulateLoading();
+                
+                try {
+                    const savedTheme = localStorage.getItem('retro-bit-theme');
+                    if (savedTheme && backgrounds[savedTheme]) {
+                        helpers.updateBackground(savedTheme);
+                    }
+                } catch (e) {
+                    console.warn('Could not restore theme preference:', e);
+                }
+                
+                const hash = window.location.hash.substring(1);
+                helpers.showSection(hash || 'home');
+            }
+
+            // Set up event delegation for navigation
+            DOM.navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default anchor behavior
+                    const sectionId = link.getAttribute('data-section');
+                    helpers.showSection(sectionId);
+                });
+            });
+
+            // Set up event delegation for theme buttons
+            Object.keys(DOM.themeButtons).forEach(key => {
+                DOM.themeButtons[key].addEventListener('click', () => {
+                    helpers.updateBackground(key);
+                });
+            });
+
+            // Initialize the application when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initApp);
+            } else {
+                initApp();
+            }
+
+            // Make openModal and closeModal globally accessible
+            window.openModal = openModal;
+            window.closeModal = closeModal;
+        })();
+    </script>
+</body>
+</html>
